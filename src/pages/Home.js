@@ -11,14 +11,24 @@ function Home({ isAuth }) {
     await deleteDoc(postDoc);
   };
 
+  // useEffect(() => {
+  //   const getPosts = async () => {
+  //     const data = await getDocs(postsCollectionRef);
+  //     setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //   };
+
+  //   getPosts();
+  // }, [deletePost]);
+
   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-
+  
     getPosts();
-  }, [deletePost]);
+  }, [postsCollectionRef]); // Include 'postsCollectionRef' in the dependency array
+  
 
   // ... (previous code)
 
